@@ -73,6 +73,9 @@ function SimonSays() {
       setUserSequence([]);
       setUserTurn(false);
       setRound(round + 1);
+      if (round + 1 > bestScore) {
+        updateScore(round + 1);
+      }
       setIsCorrect(true);
     }
     setTimeout(() => {
@@ -92,16 +95,18 @@ function SimonSays() {
     }
   }, [sequence]);
 
+  //Best Score local host 
   useEffect(()=>{
     const storedBestScore = localStorage.getItem('bestScore');
     if (storedBestScore) {
       setBestScore(parseInt(storedBestScore, 10))
     }
-  }, [])
+  }, []);
 
   function updateScore(newScore) {
     if (newScore > bestScore) {
       setBestScore(newScore);
+      localStorage.setItem('bestScore', newScore);
     }
   }
   
@@ -118,12 +123,12 @@ function SimonSays() {
         </div>
         <div className="button-middle_container">
           <button className="button-middle" onClick={startGame}>
-            Start
+            <span className='button-middle_text'>{waiting ? '...' : round}</span>
           </button>
         </div>
       </div>
       <div className="score">
-        <p>Best Score: {round}</p>
+        <p>Best Score: {bestScore}</p>
       </div>
       
     </>
