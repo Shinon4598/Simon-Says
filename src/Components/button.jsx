@@ -1,9 +1,8 @@
 
-function Button({Active = false, onClick}) {
+function Button({Active = false, color,  onClick}) {
     return (
         <button 
-            className={Active ? 'active' : ''} onClick={onClick}>
-
+            className={`${Active ? 'active' : ''} simon-button btn btn-${color}`} onClick={onClick}>
         </button>
     )
     
