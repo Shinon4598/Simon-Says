@@ -82,19 +82,19 @@ background: radial-gradient(circle, rgba(47,47,48,1) 0%, rgba(0,0,0,1) 100%);
   filter: drop-shadow(16px 16px 20px red) invert(75%);
 }
 .pastel .btn-yellow {
-  background: radial-gradient(circle, rgb(255, 241, 118), #F9D648);
+  background: radial-gradient(circle, #FFFFFF, #dfdada);
 }
 
 .pastel .btn-red {
-  background: radial-gradient(circle, rgb(255, 138, 128), #FF8A80);
+  background: radial-gradient(circle, #e9e9e9, #D3D3D3);
 }
 
 .pastel .btn-green {
-  background: radial-gradient(circle, rgb(165, 214, 167), #81C784);
+  background: radial-gradient(circle, #ababab, #808080);
 }
 
 .pastel .btn-blue {
-  background: radial-gradient(circle, rgb(144, 202, 249), #64B5F6);
+  background: radial-gradient(circle, #151515, #000000);
 }
 
 
@@ -143,6 +143,17 @@ background: radial-gradient(circle, rgba(47,47,48,1) 0%, rgba(0,0,0,1) 100%);
     box-shadow: 20px -20px 100px  #ffeb3b;
 }
 
+/*Sombra activa*/
+.active.btn-blue{
+  box-shadow: 20px 20px 100px #82b1ff;
+}
+
+.pastel .active.btn-green,
+.pastel .active.btn-yellow,
+.pastel .active.btn-blue,
+.pastel .active.btn-red{
+  box-shadow: -20px 20px 100px #b9b9b9;
+}
 @keyframes brightness {
   0% {
     filter: brightness(0.8);

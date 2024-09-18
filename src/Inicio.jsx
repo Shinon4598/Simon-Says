@@ -98,7 +98,7 @@ export default function Inicio({setDifficulty, difficulty, setTimer, timer, setG
                             onChange={handleTheme}
                             /> 
                     <label 
-                        htmlFor="pastel"> Pastel
+                        htmlFor="pastel"> Acromatico
                     </label>
                 </div>
                 <p>Timer mode</p>
