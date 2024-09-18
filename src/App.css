@@ -16,12 +16,8 @@ background: radial-gradient(circle, rgba(47,47,48,1) 0%, rgba(0,0,0,1) 100%);
   height: 65vmin;
   border-radius: 50%;
   padding: 20px;
-  background: rgb(0,0,0);
-  background: linear-gradient(0deg, rgba(0,0,0,1) 26%, rgba(77,82,82,1) 81%);
-}
-button:focus, button:active {
-  outline: none !important;
-  box-shadow: none;
+  background: #333333;;
+  border: 5px solid #1111;
 }
 
 .simon-buttons_container{
@@ -29,44 +25,100 @@ button:focus, button:active {
   height: 100%;
   width: 100%;
   border-radius: 50%;
-  overflow: hidden;
+  background-color: #333333;
 }
+/*-----------------Botones-----------------*/
 .simon-button{
-  width: 48%;
-  height: 48%;
+  width: 47%;
+  height: 47%;
   cursor:auto;
   position:absolute;
-  border-color: black;
-  border-radius: 0;
-  filter: brightness(0.5);
-  border-color: black;
+  filter: brightness(0.7);
+  transition: all 0.3s;
+  border: none;
+  outline: none;
+  background: none;
 }
-.simon-button:hover{
-  border-color: black;
+.simon-button:hover,
+.simon-button:focus,
+.simon-button:active {
+  border: none;
+  outline: none; 
 }
+/* Colores */
+.btn-green {
+  background: radial-gradient(circle, #97de9b, #4caf50);
+}
+
+.btn-red {
+  background: radial-gradient(circle, #f08282, #f44336);
+}
+
+.btn-yellow {
+  background: radial-gradient(circle, #ffbf5f, #ff9800);
+}
+
+.btn-blue {
+  background: radial-gradient(circle, #81c6ff, #2196f3);
+}
+
+/*Posiciones*/
 .simon-button:first-child{
   top: 0;
   left: 0;
-  background-color: #4dff4d; /* Verde */
+  border-radius: 100% 0 0 0;
 }
+
 .simon-button:nth-child(2){
   top: 0;
   right: 0;
-  background-color: #ff4d4d;
+  border-radius: 0 100% 0 0;
 }
+
 .simon-button:nth-child(3){
+  border-radius: 0 0 0 100%;
   bottom: 0;
   left: 0;
-  background-color: #ffff4d; /* Amarillo */
 }
+
 .simon-button:last-child{
+  border-radius: 0 0 100% 0;
   bottom: 0;
-  right: 0;
-  background-color: #4d79ff; /* Azul */
+  right: 00;
+}
+
+.simon-button.active {
+  transform: scale(0.98);
 }
 
 .active{
   animation: brightness 0.9s ease-out infinite;
+}
+/*Sombra activa*/
+.active.btn-blue{
+    box-shadow: 20px 20px 100px #82b1ff;
+}
+
+.active.btn-green{
+    box-shadow: -20px 20px 100px #80e27e;
+}
+.active.btn-red{
+    box-shadow: -20px -20px 100px  #ff8a80;
+}
+.active.btn-yellow{
+    box-shadow: 20px -20px 100px  #ffeb3b;
+}
+
+@keyframes brightness {
+  0% {
+    filter: brightness(0.7);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+  100% {
+    filter: brightness(0.7);
+  }
 }
 
 .button-middle_container{
@@ -74,13 +126,14 @@ button:focus, button:active {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: linear-gradient(0deg, rgba(0,0,0,1) 26%, rgba(77,82,82,1) 81%);;
+  background: linear-gradient(20deg, #333333 26%, #777f7f 81%);
   width: 26vmin;
   height: 26vmin;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
 }
 .button-middle{
   width: 20vmin;
@@ -99,25 +152,33 @@ button:focus, button:active {
   border: 4px solid rgb(24, 24, 24);
 }
 .button-middle_text{
-  color: black;
+  color: #121212; /* Rojo neón */
+  font-family: 'Roboto', sans-serif; /* Fuente moderna */
+  font-size: 2em; /* Tamaño de fuente grande para visibilidad */
+  font-weight: bold; /* Negrita para resaltar */
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Efecto de brillo */
 }
-@keyframes brightness {
-  0% {
-    filter: brightness(0.5);
-  }
-  50% {
-    filter: brightness(1.5);
-  }
-  100% {
-    filter: brightness(0.5);
-  }
-}
+
 
 .waiting{
   border: 4px blue solid;
-  background: radial-gradient(circle, rgba(0,0,0,1) 51%, rgba(84,76,77,1) 100%);
 }
 
 .score{
   font-size: 4vmin;
+}
+.waiting{
+  transition: all 0.5s;
+  animation: waiting 1s ease;
+}
+@keyframes waiting {
+  0% {
+    border: 1px solid blue;
+  }
+  50% {
+    border: 10px solid blue;
+  }
+  100% {
+    border: 1px solid blue;
+  }
 }

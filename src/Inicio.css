@@ -1,0 +1,43 @@
+.button-start{
+    height: 20vmin;
+    width: 20vmin;
+    font-size: 10vmin;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.button-start:hover{
+    background-color: #007bff;
+}
+.difficulty-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Espacio entre los botones */
+}
+
+.difficulty-container label {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.difficulty-container input[type="radio"] {
+    display: none;
+}
+
+.difficulty-container input[type="radio"]:checked + label {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.difficulty-container label:hover {
+    background-color: #e0e0e0;
+}

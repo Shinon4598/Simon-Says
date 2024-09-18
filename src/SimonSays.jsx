@@ -13,8 +13,20 @@ function SimonSays() {
   const [waiting, setWaiting] = useState(false); //Pausa entre la interacción del usuario y cuando se muestra la secuencia de colores
   const [bestScore, setBestScore] = useState(0); 
   
-  const colors = ['danger', 'warning', 'success', 'primary'];
-
+  const colors = ['red', 'yellow', 'green', 'blue'];
+  const sounds = {
+    red: new Audio('/red.mp3'),
+    yellow: new Audio ('/yellow.mp3'),
+    green: new Audio('/green.mp3'),
+    blue: new Audio ('/blue.mp3'),
+    end: new Audio ('/end.mp3')
+  }
+  //Reproducir sonido
+  const playSound = (color) => {
+    if (sounds[color]) {
+      sounds[color].play();
+    }
+  }
   //Obtener un nuevo color aleatorio
   function getRandomColor() { 
     return Math.floor(Math.random() * colors.length);
@@ -34,6 +46,8 @@ function SimonSays() {
     const interval = setInterval(() => {
       if (index < sequence.length) {
         setActiveColor(sequence[index]);
+        console.log(colors[sequence[index]])
+        playSound(colors[sequence[index]]);
         index++;
       }
       else{
@@ -47,9 +61,11 @@ function SimonSays() {
   // Manejar el click de los botones para verificar si es correcto
   const handleClick = (color) => {
     if (!userTurn || waiting) return;
-
+-
     setActiveColor(color);
     setUserSequence([...userSequence, color]);
+
+    playSound(colors[color]);
 
     //Se debe crear una variable si no por la asincronia no se puede comparar el valor de userSequence con sequence
     const newSequence = [...userSequence, color];
@@ -59,6 +75,7 @@ function SimonSays() {
     console.log(isMatch + " : " + newSequence + " / " + sequence);
   
     if (!isMatch) {
+      playSound(sounds['end']);
       alert('Perdiste');
       setGameOver(true);
       setIsCorrect(false);
@@ -117,13 +134,21 @@ function SimonSays() {
         <div className='simon-buttons_container'>
           {
               colors.map((color, index) => (
-                <Button key={index} Active= {index == ActiveColor} color={color} onClick = {() => handleClick(index)}></Button>
+                <Button 
+                  key={index}
+                  Active= {index == ActiveColor}
+                  color={color} 
+                  onClick = {() => handleClick(index, color)}>
+                </Button>
               ))  
           }
         </div>
-        <div className="button-middle_container">
+        <div className={`button-middle_container ${waiting ? 'waiting' : ''}`}>
           <button className="button-middle" onClick={startGame}>
-            <span className='button-middle_text'>{waiting ? '...' : round}</span>
+            {
+              (<span className="button-middle_text ">{waiting && round <= 1 ? '🍀' : waiting ? '✔' : round}</span>)
+            }
+            
           </button>
         </div>
       </div>
