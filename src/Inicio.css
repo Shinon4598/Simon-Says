@@ -13,14 +13,14 @@
 .button-start:hover{
     background-color: #007bff;
 }
-.difficulty-container {
+.theme-container, .difficulty-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 10px; /* Espacio entre los botones */
 }
 
-.difficulty-container label {
+.theme-container label, .difficulty-container label {
     display: inline-block;
     padding: 10px 20px;
     border: 2px solid #ccc;
@@ -29,17 +29,18 @@
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-.difficulty-container input[type="radio"] {
+.theme-container input[type="radio"], .difficulty-container input[type="radio"] {
     display: none;
 }
 
+.theme-container input[type="radio"]:checked + label,
 .difficulty-container input[type="radio"]:checked + label {
     background-color: #007bff;
     color: white;
     border-color: #007bff;
 }
 
-.difficulty-container label:hover {
+.theme-container label:hover, .difficulty-container label:hover {
     background-color: #e0e0e0;
 }
 h1{

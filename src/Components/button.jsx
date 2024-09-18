@@ -10,7 +10,7 @@ function Button({Active = false, color, time,  onClick}) {
     } : {};
     return (
         <button 
-            className={`${Active ? 'active' : ''} simon-button btn-${color} `} style={styles} onClick={onClick}>
+            className={`${Active ? 'active' : ''} simon-button btn-${color} blanco-y-negro`} style={styles} onClick={onClick}>
         </button>
     )
     

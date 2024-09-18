@@ -3,7 +3,7 @@ import Button from './Components/button';
 import './App.css';
 
 
-function SimonSays({difficulty, timerMode, setGameStart} ) {
+function SimonSays({difficulty, timerMode, setGameStart, theme} ) {
   const [ActiveColor, setActiveColor] = useState(null); //El color que se esta mostrando
   const [sequence, setSequence] = useState([]); //La secuencia de colores
   const [userTurn, setUserTurn] = useState(false); //Si es el  turno del jugador
@@ -195,7 +195,7 @@ function SimonSays({difficulty, timerMode, setGameStart} ) {
       <>
       {timerMode && (<p className="score">Time Left : {timeLeft}</p>)}
       <div className='simon-container'>
-        <div className='simon-buttons_container'>
+        <div className={`simon-buttons_container ${theme}`}>
           {
               colors.map((color, index) => (
                 <Button 

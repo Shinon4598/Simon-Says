@@ -2,7 +2,7 @@ import { useState } from "react";
 import './Inicio.css'
 import Titulo from "./Components/Titulo";
 
-export default function Inicio({setDifficulty, difficulty, setTimer, timer, setGameStart}) {
+export default function Inicio({setDifficulty, difficulty, setTimer, timer, setGameStart, theme, setTheme}) {
 
     const handleDifficulty = (e) => {
         setDifficulty(e.target.value);
@@ -12,10 +12,8 @@ export default function Inicio({setDifficulty, difficulty, setTimer, timer, setG
         audioStart.play();
         setGameStart(true);
     }
-    const handleTimer = () => {
-        setTimer(!timer);
-        setTimerToStart(!timer);
-        console.log(timer);
+    const handleTheme = (e) => {
+        setTheme(e.target.value);
     }
     const tituloJuego = 'SIMON SAYS';
     const colores = ['green', 'red', 'yellow', 'blue'];
@@ -65,9 +63,48 @@ export default function Inicio({setDifficulty, difficulty, setTimer, timer, setG
                     htmlFor="hard"> Hard
                 </label>
             </div>
-            <p>Timer mode</p>
             
-            <button onClick={()=>setTimer(!timer)}>{timer ? 'on' : 'of'}</button>
+            <p>Theme</p>
+                <div className="theme-container">
+                        <input 
+                            id="normalTheme"
+                            type="radio" 
+                            name="theme"
+                            value="normal"
+                            checked={theme === 'normal'}
+                            onChange={handleTheme}
+                            /> 
+                    <label htmlFor="normalTheme">
+                        Normal
+                    </label>
+                        <input 
+                            id="highContrast"
+                            type="radio" 
+                            name="theme" 
+                            value="highContrast"
+                            checked={theme === 'highContrast'}
+                            onChange={handleTheme}
+                            />
+                    <label htmlFor="highContrast">
+                    High Contrast
+                    </label>
+                    
+                        <input 
+                            id="pastel"
+                            type="radio"
+                            name="theme"
+                            value="pastel"
+                            checked={theme === 'pastel'}
+                            onChange={handleTheme}
+                            /> 
+                    <label 
+                        htmlFor="pastel"> Pastel
+                    </label>
+                </div>
+                <p>Timer mode</p>
+            
+            <button className="timer-button" onClick={()=>setTimer(!timer)}>{timer ? 'ON' : 'OF'} ⏱️</button>
             </div> 
+            
     )
 }
