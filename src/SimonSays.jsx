@@ -216,7 +216,9 @@ function SimonSays({difficulty, timerMode, setGameStart, theme} ) {
         </div>
       ):(
       <>
-      {timerMode && (<p className="score">Time Left : {timeLeft}</p>)}
+      {
+      timerMode && (<p className="score">Time Left : {timeLeft}</p>)}
+      <a className='flecha_atras'  href='/'>🢘</a>
       <div className='simon-container'>
         <div className={`simon-buttons_container ${theme}`}>
           {

@@ -216,3 +216,11 @@ background: radial-gradient(circle, rgba(47,47,48,1) 0%, rgba(0,0,0,1) 100%);
     border: 1px solid blue;
   }
 }
+
+.flecha_atras{
+  position: absolute;
+  top: 0;
+  left: 20px;
+  color: white;
+  font-size: 5em;
+}
