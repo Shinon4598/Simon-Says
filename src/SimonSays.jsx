@@ -13,7 +13,7 @@ function SimonSays({difficulty, timerMode, setGameStart, theme} ) {
   const [isCorrect, setIsCorrect] = useState(false); 
   const [waiting, setWaiting] = useState(false); //Pausa entre la interacción del usuario y cuando se muestra la secuencia de colores
   const [bestScore, setBestScore] = useState(0); 
-  const [timeLeft, setTimeLeft] = useState(30);
+  const [timeLeft, setTimeLeft] = useState(10);
   const [timer, setTimer] = useState(null);
 
   
@@ -22,10 +22,7 @@ function SimonSays({difficulty, timerMode, setGameStart, theme} ) {
     normal: 500,
     hard: 300
   }
-
-  const calcLeftTime = () => {
-    return (sequence.length * 5);
-  }
+  
   const colors = ['red', 'yellow', 'green', 'blue'];
   const sounds = {
     red: new Audio('/red.mp3'),
@@ -90,8 +87,36 @@ function SimonSays({difficulty, timerMode, setGameStart, theme} ) {
     },difficultyTimer[difficulty]);
   }
 
+
+  const calcLeftTime = (difficulty, sequenceLength) => {
+    let baseTime;
+    let extraTimePerColor;
+  
+    switch (difficulty) {
+      case 'easy':
+        baseTime = 10; // Tiempo base para dificultad fácil
+        extraTimePerColor = 2; // Tiempo extra por cada color en la secuencia
+        break;
+      case 'normal':
+        baseTime = 7; // Tiempo base para dificultad normal
+        extraTimePerColor = 1.5; // Tiempo extra por color
+        break;
+      case 'hard':
+        baseTime = 5; // Tiempo base para dificultad difícil
+        extraTimePerColor = 1; // Tiempo extra por color
+        break;
+      default:
+        baseTime = 10; // Valor por defecto
+        extraTimePerColor = 2; 
+    }
+  
+    // tiempo base + tiempo por cada color en la secuencia
+    const totalTime = baseTime + (sequenceLength * extraTimePerColor);
+    return totalTime;
+  }
+
   const NewTimer = () => {
-    setTimeLeft(30);
+    setTimeLeft(calcLeftTime(difficulty, sequence.length));
     const intervalo = setInterval(() => {
         setTimeLeft(prev => {
           if (prev <= 1) {
@@ -125,12 +150,6 @@ function SimonSays({difficulty, timerMode, setGameStart, theme} ) {
     console.log(isMatch + " : " + newSequence + " / " + sequence);
   
     if (!isMatch) {
-      const audio = new Audio('/game-fail.mp3');
-      audio.play();
-      setTimeout(() => {
-        audio.pause();
-        audio.currentTime = 0;
-      }, 1500);
       setGameOver(true);
       setIsCorrect(false);
       setSequence([]);
@@ -155,7 +174,11 @@ function SimonSays({difficulty, timerMode, setGameStart, theme} ) {
     }, 500);
   };
   
-
+  useEffect(() => {
+    if (gameOver) {
+      sounds.gameFail.play();
+    }
+  }, [gameOver]);
   useEffect(() => {
     if (round > 0 && isCorrect) {
       setWaiting(true);
