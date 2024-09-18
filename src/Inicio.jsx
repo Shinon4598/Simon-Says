@@ -1,18 +1,32 @@
 import { useState } from "react";
 import './Inicio.css'
+import Titulo from "./Components/Titulo";
 
-export default function Inicio({}) {
-    const [difficulty, setDifficulty] = useState('normal');
-    const [timer, setTimer] = useState(false);
+export default function Inicio({setDifficulty, difficulty, setTimer, timer, setGameStart}) {
 
     const handleDifficulty = (e) => {
         setDifficulty(e.target.value);
-        console.log(difficulty);
     }
+    const handleStart = () => {
+        const audioStart = new Audio('/start.mp3');
+        audioStart.play();
+        setGameStart(true);
+    }
+    const handleTimer = () => {
+        setTimer(!timer);
+        setTimerToStart(!timer);
+        console.log(timer);
+    }
+    const tituloJuego = 'SIMON SAYS';
+    const colores = ['green', 'red', 'yellow', 'blue'];
     return(
         <div>
-            <h1>Simon Says</h1>
-            <button className="button-start">►</button>
+            <h1 className="titulo">
+                {tituloJuego.split('').map((letra, index)=>(
+                    <Titulo key={index} color={colores[index%4]} letra={letra}/>
+                ))}
+            </h1>
+            <button className="button-start" onClick={handleStart}>►</button>
             <p>Difficulty</p>
             <div className="difficulty-container">
                 
@@ -53,7 +67,7 @@ export default function Inicio({}) {
             </div>
             <p>Timer mode</p>
             
-            <button onClick={()=>setDifficulty(!difficulty)}>{difficulty ? 'off' : 'on'}</button>
+            <button onClick={()=>setTimer(!timer)}>{timer ? 'on' : 'of'}</button>
             </div> 
     )
 }

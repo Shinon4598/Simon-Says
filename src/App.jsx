@@ -2,15 +2,16 @@ import SimonSays from "./SimonSays";
 import Inicio from "./Inicio";
 import { useState } from "react";
 function App() {
-  const [gameOver, setGameOver] = useState(false);
-  const [difficulty, setDifficulty] = useState(['easy', 'normal', 'hard']);
+  const [gameStart, setGameStart] = useState(false);
+  const [difficulty, setDifficulty] = useState('normal');
+  const [timer, setTimer] = useState(false);
 
   return (
     <>
-      {!gameOver ? 
-      (<Inicio />)
+      {!gameStart ? 
+      (<Inicio setDifficulty = {setDifficulty} difficulty={difficulty} setTimer={setTimer} timer={timer} setGameStart={setGameStart}/>)
        : 
-      (<SimonSays />)}
+      (<SimonSays difficulty={difficulty} timerMode={timer} setGameStart={setGameStart}/>)}
       
       
     </>

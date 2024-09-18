@@ -9,6 +9,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .button-start:hover{
     background-color: #007bff;
 }
@@ -40,4 +41,23 @@
 
 .difficulty-container label:hover {
     background-color: #e0e0e0;
+}
+h1{
+    animation: tituloAbajo 1s forwards;;
+
+}
+h1 span{
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 15vmin;
+    text-shadow: 2px 2px 14px rgba(0, 0, 0, 0.5);
+}
+@keyframes tituloAbajo {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+    
 }
