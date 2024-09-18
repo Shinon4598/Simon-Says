@@ -212,7 +212,11 @@ function SimonSays({difficulty, timerMode, setGameStart, theme} ) {
         <div className="game-over">
           <h1 className="game-over__title">Game Over</h1>
           <p className="game-over__text">Your score is: {round}</p>
-          <button className="game-over__button" onClick={()=>setGameStart(false)}>Try again</button>
+          <div className='group_game-over-buttons'>
+            <button className="game-over__button" onClick={()=>startGame()}>Try again</button>
+            <button className="game-over__button" onClick={()=>setGameStart(false)}>Go Back</button>
+          </div>
+          
         </div>
       ):(
       <>
