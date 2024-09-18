@@ -5,6 +5,20 @@
   text-align: center;
   font-family: 'Roboto', sans-serif; 
 }
+@media screen and (max-width: 768px) {
+  #root {
+    padding: 0;
+    margin: 0;
+  }
+  .simon-container{
+    margin-left: 10%;
+  }
+
+  .score{
+    margin-left: 20%;
+  }
+  
+}
 body{
   font-family: 'Roboto', sans-serif;
   background: rgb(47,47,48);

@@ -17,18 +17,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Espacio entre los botones */
+    gap: 10px;
 }
 
 .theme-container label, .difficulty-container label {
     display: inline-block;
-    padding: 10px 20px;
+    padding: 2vmin 3vmin;
     border: 2px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
-
+@media screen and (max-width: 768px) {
+    .theme-container, .difficulty-container {
+        align-items: flex-start;
+    }
+    
+}
 .theme-container input[type="radio"], .difficulty-container input[type="radio"] {
     display: none;
 }
